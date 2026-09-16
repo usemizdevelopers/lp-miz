@@ -1,0 +1,304 @@
+/* ==========================================================================
+   MIZ — identidade: minimalista, editorial, silenciosa.
+   ========================================================================== */
+
+:root {
+  --white: #ffffff;
+  --cream-50: #f7f6f3;
+  --cream-100: #eeece7;
+  --cream-200: #e6e3db;
+  --sand-300: #d1ccc7;
+  --sand-400: #beb8b1;
+  --taupe-500: #aba49b;
+  --taupe-600: #999085;
+  --taupe-700: #7a7266;
+  --brown-800: #645d54;
+  --brown-900: #4e4841;
+  --ink-800: #38332e;
+  --ink-900: #221f1c;
+  --black: #000000;
+
+  --bg: var(--cream-50);
+  --text-body: var(--ink-800);
+  --text-signature: var(--taupe-700);
+  --button-bg: var(--ink-900);
+  --button-bg-hover: var(--ink-800);
+  --button-text: var(--cream-50);
+
+  --font-sans: "Quicksand", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --space-2xs: clamp(12px, 2vw, 16px);
+  --space-xs: clamp(20px, 3vw, 28px);
+
+  /* Respiro entre os quatro blocos principais da composição. */
+  --gap-logo-cta: clamp(56px, 9vh, 104px);
+  --gap-cta-text: clamp(72px, 13vh, 128px);
+  --gap-text-signature: clamp(48px, 8vh, 96px);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  isolation: isolate;
+}
+
+/* Textura extremamente sutil — grão editorial, quase subliminar. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Leve gradiente para dar profundidade discreta ao fundo. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, var(--white) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, var(--cream-100) 0%, transparent 65%),
+    var(--bg);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(32px, 5vh, 50px) 24px clamp(64px, 10vh, 96px);
+  text-align: center;
+}
+
+/* ---------------------------------- Logo --------------------------------- */
+/* Discreta: assina a marca sem competir com o CTA. Fica próxima do topo,
+   mas com respiro — a página flui naturalmente (sem centralizar tudo). */
+
+.logo {
+  width: clamp(58px, 5.5vw, 78px);
+  height: auto;
+  display: block;
+  margin: 0 0 var(--gap-logo-cta);
+}
+
+/* ------------------------------- Botão CTA -------------------------------- */
+
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 var(--gap-cta-text);
+  padding: 17px clamp(34px, 6vw, 48px);
+  border-radius: 6px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(15px, 1.4vw, 17px);
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(34, 31, 28, 0.14);
+  transition: transform 300ms ease, box-shadow 300ms ease, background-color 300ms ease;
+  animation: breathe 4.5s ease-in-out infinite;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.09) 47%,
+    rgba(255, 255, 255, 0.16) 50%,
+    rgba(255, 255, 255, 0.09) 53%,
+    transparent 70%
+  );
+  background-size: 260% 100%;
+  background-position: 200% 0;
+  animation: sweep 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.cta-button:hover,
+.cta-button:focus-visible {
+  background-color: var(--button-bg-hover);
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 10px 24px rgba(34, 31, 28, 0.2);
+  animation-play-state: paused;
+}
+
+.cta-button:focus-visible {
+  outline: 2px solid var(--taupe-600);
+  outline-offset: 4px;
+}
+
+.cta-button:active {
+  transform: translateY(0) scale(1);
+  box-shadow: 0 2px 10px rgba(34, 31, 28, 0.16);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 2px 12px rgba(34, 31, 28, 0.14);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(34, 31, 28, 0.18);
+  }
+}
+
+@keyframes sweep {
+  0% {
+    background-position: 220% 0;
+  }
+  55% {
+    background-position: -60% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+/* ---------------------------- Texto institucional ------------------------- */
+
+.manifesto {
+  max-width: 540px;
+  margin: 0 0 var(--gap-text-signature);
+  text-align: left;
+}
+
+.manifesto p {
+  margin: 0 0 1.4em;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-body);
+  font-weight: 400;
+}
+
+.manifesto p:last-child {
+  margin-bottom: 0;
+}
+
+.manifesto .lede {
+  font-weight: 500;
+  color: var(--ink-900);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 480px) {
+  .manifesto p {
+    font-size: 14px;
+  }
+}
+
+/* -------------------------------- Assinatura ------------------------------ */
+
+.signature {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(16px, 1.8vw, 20px);
+  letter-spacing: 0.06em;
+  color: var(--text-signature);
+  line-height: 1.5;
+}
+
+/* --------------------------------- Entrada -------------------------------- */
+
+.logo,
+.cta-button,
+.manifesto,
+.signature {
+  opacity: 0;
+  transform: translateY(10px);
+  animation-name: fadeUp;
+  animation-duration: 800ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.logo {
+  animation-delay: 60ms;
+}
+
+.manifesto {
+  animation-delay: 340ms;
+}
+
+.signature {
+  animation-delay: 480ms;
+}
+
+/* O botão soma a entrada (fadeUp) à respiração contínua (breathe),
+   que só começa depois que a entrada termina. */
+.cta-button {
+  animation-name: fadeUp, breathe;
+  animation-duration: 800ms, 4.5s;
+  animation-timing-function: ease-out, ease-in-out;
+  animation-delay: 200ms, 1000ms;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, none;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------ Acessibilidade ----------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .cta-button,
+  .manifesto,
+  .signature {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cta-button::before {
+    display: none;
+  }
+
+  .cta-button:hover,
+  .cta-button:focus-visible {
+    transform: none;
+  }
+}
