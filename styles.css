@@ -19,10 +19,10 @@
   --black: #000000;
 
   --bg: var(--cream-50);
-  --text-body: var(--ink-800);
-  --text-signature: var(--taupe-700);
-  --button-bg: var(--ink-900);
-  --button-bg-hover: var(--ink-800);
+  --text-body: var(--taupe-600);
+  --text-signature: var(--taupe-600);
+  --button-bg: var(--taupe-600);
+  --button-bg-hover: var(--taupe-700);
   --button-text: var(--cream-50);
 
   --font-sans: "Quicksand", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -160,7 +160,7 @@ body::after {
 }
 
 .cta-button:focus-visible {
-  outline: 2px solid var(--taupe-600);
+  outline: 2px solid var(--ink-900);
   outline-offset: 4px;
 }
 
@@ -215,7 +215,7 @@ body::after {
 
 .manifesto .lede {
   font-weight: 500;
-  color: var(--ink-900);
+  color: var(--taupe-600);
   letter-spacing: 0.01em;
 }
 
